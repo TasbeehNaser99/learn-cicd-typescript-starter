@@ -6,7 +6,7 @@ on:
 
 jobs:
   tests:
-    name: Tests
+    name: tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -23,8 +23,8 @@ jobs:
       - name: Run tests
         run: npm test
 
-  Deploy:
-    name: Deploy
+  deploy:
+    name: deploy
     needs: Tests
     runs-on: ubuntu-latest
     steps:
