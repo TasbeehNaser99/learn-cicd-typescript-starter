@@ -1,10 +1,10 @@
 import { describe, expect, test } from "vitest";
-import { getAPIKey } from "../api/auth";
+import { getAPIKey } from "../api/auth.js";
 
 describe("getAPIKey", () => {
   test("should return the API key from the Authorization header", () => {
     const headers = {
-      authorization: "ApiKey 123456789"
+      authorization: "ApiKey 123456789",
     };
     const result = getAPIKey(headers);
     expect(result).toBe("123456789");
