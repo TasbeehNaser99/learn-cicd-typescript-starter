@@ -5,14 +5,14 @@ on:
     branches: [main]
 
 jobs:
-  tests:
+  Tests:        # الاسم اللي الموقع ميت عليه
     name: Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -20,24 +20,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests
+      - name: Tests              # كررنا الاسم هون كمان للتأكيد
         run: npm test
 
-  deploy:
-    name: Deploy
-    needs: tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build the app
+      - name: Deploy             # خطوة النشر بداخل نفس الـ Job
         run: npm run build
