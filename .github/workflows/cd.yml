@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 jobs:
-  Tests:        # الاسم اللي الموقع ميت عليه
+  Tests:
     name: Tests
     runs-on: ubuntu-latest
     steps:
@@ -20,8 +20,24 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Tests              # كررنا الاسم هون كمان للتأكيد
+      - name: Run tests
         run: npm test
 
-      - name: Deploy             # خطوة النشر بداخل نفس الـ Job
+  Deploy:
+    name: Deploy
+    needs: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
         run: npm run build
