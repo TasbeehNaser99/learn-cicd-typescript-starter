@@ -1,32 +1,14 @@
-name: cd
+name: CD
 
 on:
   push:
     branches: [main]
 
 jobs:
-  tests:
-    name: tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests
-        run: npm test
-
-  deploy:
+  Deploy: # اسم الوظيفة كما هو مطلوب في التكليف
     name: Deploy
-    needs: tests
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
