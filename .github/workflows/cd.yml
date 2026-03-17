@@ -24,16 +24,18 @@ jobs:
       - name: Build
         run: npm run build
 
-      # --- الخطوات الجديدة للربط مع جوجل كلاود ---
-
-      - name: 'Authenticate to Google Cloud'
+      # الخطوة 1: المصادقة مع جوجل سحاب باستخدام السر المخزن في GitHub
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v2'
         with:
           credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
+      # الخطوة 2: إعداد أدوات gcloud CLI في بيئة العمل
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v2'
 
+      # الخطوة 3: بناء صورة Docker ورفعها إلى Artifact Registry
       - name: 'Build and Push to Artifact Registry'
         run: |
-          gcloud builds submit --tag us-central1-docker.pkg.dev/notely-489300/notely-repo/notely-image:latest .
+          gcloud builds submit --tag us-central1-docker.pkg.dev/notely-490519/notely-ar-repo/notely:latest .
