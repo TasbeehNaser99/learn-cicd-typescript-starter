@@ -36,4 +36,4 @@ jobs:
 
       - name: 'Build and Push to Artifact Registry'
         run: |
-          gcloud builds submit --tag us-central1-docker.pkg.dev/notely-490318/notely-repo/notely-image:latest .
+          gcloud builds submit --tag us-central1-docker.pkg.dev/notely-489300/notely-repo/notely-image:latest .
